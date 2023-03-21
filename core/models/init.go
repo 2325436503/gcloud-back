@@ -13,8 +13,8 @@ import (
 
 // 初始化数据库
 func Init(dataSource string) *gorm.DB {
-	// engine, err := gorm.Open(mysql.Open(dataSource), &gorm.Config{})
-	engine, err := gorm.Open(mysql.Open("root:"+define.MySQLPassword+"@tcp("+define.MySQLAddr+")/gcloud?charset=utf8mb4&parseTime=True&loc=Local"), &gorm.Config{})
+	engine, err := gorm.Open(mysql.Open(dataSource), &gorm.Config{})
+	//engine, err := gorm.Open(mysql.Open("root:"+define.MySQLPassword+"@tcp("+define.MySQLAddr+")/gcloud?charset=utf8mb4&parseTime=True&loc=Local"), &gorm.Config{})
 	if err != nil {
 		log.Printf("Gorm New Engine Error:%v", err)
 		return nil

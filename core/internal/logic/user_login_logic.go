@@ -62,7 +62,7 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginRe
 		resp.Msg = "生成token失败"
 		return
 	}
-
+	resp = new(types.LoginReply)
 	resp.Token = token
 	resp.RefreshToken = refreshToken
 	resp.Msg = "用户登录成功"

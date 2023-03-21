@@ -20,18 +20,18 @@ func CosDownload(r *http.Request, dowload_path string, fileName string) ([]byte,
 		},
 	})
 
-	key := define.CosFolderName + "/" + dowload_path[61:]
+	key := dowload_path[len(define.CosBucket):]
 	resp, err := client.Object.Get(context.Background(), key, nil)
 	if err != nil {
 		panic(err)
 	}
 
 	bs, _ := ioutil.ReadAll(resp.Body)
-
-	// _, err = client.Object.GetToFile(context.Background(), key, fileName, nil)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	resp.Body.Close()
+	//_, err = client.Object.GetToFile(context.Background(), key, fileName, nil)
+	//if err != nil {
+	//	panic(err)
+	//}
 
 	return bs, err
 }

@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"gcloud/core/define"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -140,18 +141,17 @@ func TestCosDownload(t *testing.T) {
 			SecretKey: define.TencentSecretKey,
 		},
 	})
+	key := "a6423641-1d07-4d47-b61c-5a59dc6977de.jpeg"
+	resp, err := client.Object.Get(context.Background(), key, nil)
+	if err != nil {
+		panic(err)
+	}
 
-	key := define.CosFolderName + "/" + "01e90e8c-94a5-4ef7-9374-89b54770eb10.jpg"
-	// resp, err := client.Object.Get(context.Background(), key, nil)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
+	fmt.Println(len(define.CosBucket))
 
-	// bs, _ := ioutil.ReadAll(resp.Body)
-	// resp.Body.Close()
-	// fmt.Printf("%s\n", string(bs))
-
-	_, err := client.Object.GetToFile(context.Background(), key, "01e90e8c-94a5-4ef7-9374-89b54770eb10.jpg", nil)
+	_, err = client.Object.GetToFile(context.Background(), key, "a6423641-1d07-4d47-b61c-5a59dc6977de.jpeg", nil)
 	if err != nil {
 		panic(err)
 	}

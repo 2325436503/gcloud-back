@@ -1,11 +1,5 @@
 package define
 
-import (
-	"os"
-
-	"github.com/dgrijalva/jwt-go"
-)
-
 // JwtKey
 type UserClaim struct {
 	Id       int
@@ -15,12 +9,12 @@ type UserClaim struct {
 	jwt.StandardClaims
 }
 
-var JwtKey = "gcloud-key"
-var MailPassword = os.Getenv("MAIL_PASSWORD")
-var RedisPassword = os.Getenv("REDIS_PASSWORD")
-var RedisAddr = os.Getenv("REDIS_ADDR")
-var MySQLAddr = os.Getenv("MYSQL_ADDR")
-var MySQLPassword = os.Getenv("MYSQL_PASSWORD")
+var JwtKey = "JwtKey"
+var MailPassword = "MailPassword"
+var RedisPassword = ""
+var RedisAddr = "redis"
+var MySQLAddr = "mysql"
+var MySQLPassword = "root"
 
 // CodeLength 验证码长度
 var CodeLength = 6
@@ -29,11 +23,12 @@ var CodeLength = 6
 var CodeExpire = 300
 
 // TencentSecretKey 腾讯云对象存储
-var TencentSecretKey = os.Getenv("TENCENT_SECRETKEY")
-var TencentSecretID = os.Getenv("TENCENT_SECRETID")
-var CosBucket = "https://gcloud-1303456836.cos.ap-chengdu.myqcloud.com"
-var CosFolderName = "gcloud"
-var AvatarBaseUrl = CosBucket + "/" + CosFolderName + "/avatars/"
+
+var TencentSecretID = "TencentSecretID"
+var TencentSecretKey = "TencentSecretKey"
+var CosBucket = "CosBucket"
+var CosFolderName = ""
+var AvatarBaseUrl = CosBucket + "/avatars/"
 
 // PageSize 分页的默认参数
 var PageSize = 20

@@ -18,9 +18,9 @@ func FileDownloadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			httpx.Error(w, err)
 			return
 		}
-
+		
 		rp := new(models.RepositoryPool)
-		// https://gcloud-1303456836.cos.ap-chengdu.myqcloud.com/
+
 		svcCtx.Engine.
 			Where("path = ?", req.Path).
 			First(rp)
@@ -36,8 +36,8 @@ func FileDownloadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			httpx.Error(w, err)
 		}
 
-		// l := logic.NewFileDownloadLogic(r.Context(), svcCtx)
-		// resp, err := l.FileDownload(&req)
+		//l := logic.NewFileDownloadLogic(r.Context(), svcCtx)
+		//resp, err := l.FileDownload(&req)
 		if err != nil {
 			httpx.Error(w, err)
 		} else {

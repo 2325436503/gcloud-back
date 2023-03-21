@@ -31,11 +31,12 @@ func CosUpload(r *http.Request) (string, error) {
 	}
 
 	fileName := UUID() + path.Ext(fileHeader.Filename)
-	key := define.CosFolderName + "/" + fileName
+	key := fileName
 
 	_, err = client.Object.Put(
 		context.Background(), key, file, nil,
 	)
+
 	if err != nil {
 		panic(err)
 	}
@@ -55,7 +56,7 @@ func CosInitPart(ext string) (string, string, error) {
 		},
 	})
 
-	key := define.CosFolderName + "/" + UUID() + ext
+	key := UUID() + ext
 	v, _, err := client.Object.InitiateMultipartUpload(context.Background(), key, nil)
 	if err != nil {
 		return "", "", err
